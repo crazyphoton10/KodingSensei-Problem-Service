@@ -15,7 +15,7 @@ app.get("/ping", (req, res) => {
   return res.json({ msg: "Problem Service is alive" });
 });
 
-//Last MW
+//Last MW if any error comes
 app.use(errorHandler);
 
 app.listen(PORT, () => {

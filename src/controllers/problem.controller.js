@@ -15,24 +15,40 @@ function addProblem(req, res, next) {
   }
 }
 function getProblem(req, res) {
-  return res
-    .status(StatusCodes.NOT_IMPLEMENTED)
-    .json({ msg: "Not Implemented" });
+  try {
+    //Nothing Implemented
+    throw new NotimplementedError("addProblem");
+  } catch (error) {
+    //When exception is caught we'll just call next MW i.e. ErrorHandler
+    next(error);
+  }
 }
 function getProblems(req, res) {
-  return res
-    .status(StatusCodes.NOT_IMPLEMENTED)
-    .json({ msg: "Not Implemented" });
+  try {
+    //Nothing Implemented
+    throw new NotimplementedError("addProblem");
+  } catch (error) {
+    //When exception is caught we'll just call next MW i.e. ErrorHandler
+    next(error);
+  }
 }
 function deleteProblem(req, res) {
-  return res
-    .status(StatusCodes.NOT_IMPLEMENTED)
-    .json({ msg: "Not Implemented" });
+  try {
+    //Nothing Implemented
+    throw new NotimplementedError("addProblem");
+  } catch (error) {
+    //When exception is caught we'll just call next MW i.e. ErrorHandler
+    next(error);
+  }
 }
 function updateProblem(req, res) {
-  return res
-    .status(StatusCodes.NOT_IMPLEMENTED)
-    .json({ msg: "Not Implemented" });
+  try {
+    //Nothing Implemented
+    throw new NotimplementedError("addProblem");
+  } catch (error) {
+    //When exception is caught we'll just call next MW i.e. ErrorHandler
+    next(error);
+  }
 }
 
 module.exports = {
