@@ -1,14 +1,23 @@
-const problemController = require("../controllers");
-const { StatusCodes } = require("http-status-codes");
 const NotimplementedError = require("../errors/Notimplemented.error");
+const { ProblemService } = require("../services");
+const { ProblemRepository } = require("../repositories");
+const { StatusCodes } = require("http-status-codes");
+
+const problemService = new ProblemService(new ProblemRepository());
 
 function pingProblemController(req, res) {
   return res.json({ msg: "Problem Controller is up" });
 }
-function addProblem(req, res, next) {
+
+async function addProblem(req, res, next) {
   try {
-    //Nothing Implemented
-    throw new NotimplementedError("addProblem");
+    const newProblem = await problemService.createProblem(req.body);
+    return res.status(StatusCodes.CREATED).json({
+      success: true,
+      message: "Successfully created a new problem",
+      error: {},
+      data: newProblem,
+    });
   } catch (error) {
     //When exception is caught we'll just call next MW i.e. ErrorHandler
     next(error);

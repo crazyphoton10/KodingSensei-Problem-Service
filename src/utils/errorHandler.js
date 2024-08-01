@@ -10,7 +10,7 @@ function errorHandler(err, req, res, next) {
       data: {}, //since it's an exception so no data will be provided
     });
   }
-  //If it's an unknown error it'll be Internal Server Error for us
+  //If it's an unknown error it'll be Internal Server Error for us eg. DB conn issues
   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
     success: false,
     message: "Something went wrong",
