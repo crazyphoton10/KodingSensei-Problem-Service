@@ -32,10 +32,15 @@ function getProblem(req, res) {
     next(error);
   }
 }
-function getProblems(req, res) {
+async function getProblems(req, res) {
   try {
-    //Nothing Implemented
-    throw new NotimplementedError("addProblem");
+    const response = await problemService.getAllProblems();
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Successfully fetched all the problems",
+      error: {},
+      data: response,
+    });
   } catch (error) {
     //When exception is caught we'll just call next MW i.e. ErrorHandler
     next(error);
