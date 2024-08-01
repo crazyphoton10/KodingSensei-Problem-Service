@@ -23,10 +23,15 @@ async function addProblem(req, res, next) {
     next(error);
   }
 }
-function getProblem(req, res) {
+async function getProblem(req, res, next) {
   try {
-    //Nothing Implemented
-    throw new NotimplementedError("addProblem");
+    const problem = await problemService.getProblem(req.params.id);
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Successfully fetched the problems",
+      error: {},
+      data: problem,
+    });
   } catch (error) {
     //When exception is caught we'll just call next MW i.e. ErrorHandler
     next(error);
