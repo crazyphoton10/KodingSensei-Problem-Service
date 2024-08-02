@@ -37,7 +37,7 @@ async function getProblem(req, res, next) {
     next(error);
   }
 }
-async function getProblems(req, res) {
+async function getProblems(req, res, next) {
   try {
     const response = await problemService.getAllProblems();
     return res.status(StatusCodes.OK).json({
@@ -51,19 +51,29 @@ async function getProblems(req, res) {
     next(error);
   }
 }
-function deleteProblem(req, res) {
+async function deleteProblem(req, res, next) {
   try {
-    //Nothing Implemented
-    throw new NotimplementedError("addProblem");
+    const deleted = await problemService.deleteProblem(req.params.id);
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Successfully deleted a problem",
+      error: {},
+      data: req.params.id,
+    });
   } catch (error) {
     //When exception is caught we'll just call next MW i.e. ErrorHandler
     next(error);
   }
 }
-function updateProblem(req, res) {
+async function updateProblem(req, res, next) {
   try {
-    //Nothing Implemented
-    throw new NotimplementedError("addProblem");
+    const update = await problemService.updateProblem(req.params.id, req.body);
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Successfully updated a problem",
+      error: {},
+      data: update,
+    });
   } catch (error) {
     //When exception is caught we'll just call next MW i.e. ErrorHandler
     next(error);

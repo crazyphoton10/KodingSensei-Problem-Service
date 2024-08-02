@@ -36,6 +36,32 @@ class ProblemRepository {
       throw error;
     }
   }
+  async deleteProblem(id) {
+    try {
+      const problem = await Problem.findByIdAndDelete(id);
+      if (!problem) {
+        throw new NotFoundError("problem", id);
+      }
+      return problem;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+  async updateProblem(id, update) {
+    try {
+      const problem = await Problem.findByIdAndUpdate(id, update, {
+        new: true,
+      });
+      if (!problem) {
+        throw new NotFoundError("problem", id);
+      }
+      return problem;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
 }
 
 module.exports = ProblemRepository;
